@@ -140,8 +140,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        var DestViewController : View2 = segue.destinationViewController as! View2
-//        DestViewController.imageData = self.imageData
+        var DestViewController : View2 = segue.destinationViewController as! View2
+        DestViewController.imageData = self.imageData
         
     }
     
