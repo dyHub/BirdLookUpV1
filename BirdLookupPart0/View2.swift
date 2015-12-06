@@ -44,22 +44,23 @@ class View2: UIViewController {
     //this is a post/get request chain that will find an image Description
     func makeRequestToCloudSight(){
         
-        postToGetToken()
-        getToGetDescription()
+        postToGetToken(getToGetDescription)
+//        getToGetDescription()
         
         
     }
     
     //------------------POST REQUEST AND GET TOKEN--------------------------//
     
-    func postToGetToken(){
-        var url = "https://camfind.p.mashape.com/image_requests"
+    func postToGetToken(callback: (Void) -> Void){
+        var url = "https://camfind.p.mashape.com/image_requests/"
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
-        
+    
         //method must take data object. make params here
-        var str1 = "image_request[image]="; var str2 = "image_request[locale]=en";
+        let str1 = "image_request[image]="
+        let str2 = "image_request[locale]=en_US"
         var params = NSMutableData()
         params.appendData(str1.dataUsingEncoding(NSUTF8StringEncoding)!)
         params.appendData(imageData!)
@@ -75,21 +76,30 @@ class View2: UIViewController {
         //response
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+            var strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
             var err: NSError?
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+            var json : NSDictionary?
+            do{
+                json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
+            }
+            catch _ {}
+            
             
             // error
             if(err != nil) {
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Error with json")
+//                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Error with json")
             }
             else {
                 
                 //get the token
                 if let parseJSON = json {
-                    var success = parseJSON["token"] as? NSString
+                    let success = parseJSON["token"] as? NSString
                     self.imgToken = success!
+                    print("ye%@", self.imgToken)
+                    
+                    //this is the get req
+                    callback()
                 }
                 
             }
@@ -101,10 +111,12 @@ class View2: UIViewController {
     //-----------------------------GET REQUEST TO FIND DESCRIPTION------------------------//
 
     func getToGetDescription(){
-        var url = "https://camfind.p.mashape.com/image_responses/" + (imgToken! as String)
+        print(imgToken)
+        let url = "https://camfind.p.mashape.com/image_responses/" + (imgToken! as String)
+//        let url = "https://camfind.p.mashape.com/image_responses/" + String(data: imgToken!, encoding: NSUTF8StringEncoding)
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         var session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
+        request.HTTPMethod = "GET"
       
         //no params this time
         
@@ -117,18 +129,23 @@ class View2: UIViewController {
         //response
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             
-            var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-            var err: NSError?
-            var json = NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves, error: &err) as? NSDictionary
+            var strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            //var err: NSError?
+            var json: NSDictionary!
+            do{
+                json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves)
+                as! NSDictionary
+            }catch{}
             
             // error
             if(err != nil) {
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                println("Error with json")
+                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                print("Error with json")
             }
             else {
                 
                 //get the token
+                
                 if let parseJSON = json {
                     var success = parseJSON["name"] as? String
                     
