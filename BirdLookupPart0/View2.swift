@@ -53,7 +53,7 @@ class View2: UIViewController {
     //------------------POST REQUEST AND GET TOKEN--------------------------//
     
     func postToGetToken(callback: (Void) -> Void){
-        var url = "https://camfind.p.mashape.com/image_requests/"
+        var url = "https://camfind.p.mashape.com/image_requests"
         var request = NSMutableURLRequest(URL: NSURL(string: url)!)
         var session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
@@ -94,12 +94,14 @@ class View2: UIViewController {
                 
                 //get the token
                 if let parseJSON = json {
-                    let success = parseJSON["token"] as? NSString
-                    self.imgToken = success!
+                    var success = parseJSON["token"] as? NSString
+                    if success==nil {self.imgDescription.text="No respond"}
+                    else {self.imgToken = success!
+                    
                     print("ye%@", self.imgToken)
                     
                     //this is the get req
-                    callback()
+                        callback()}
                 }
                 
             }
