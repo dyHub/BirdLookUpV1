@@ -1,0 +1,5 @@
+1. Change file names to represent version 1
+2. Change View2.swift to a better name
+3. Make post request take a JPG image
+4. Make sure the image doesn't stretch
+5. Fix send button to show higher up on first view

@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class View2: UIViewController {
     
     //passed from main VC
     var imageData : NSData?
-    var imgToken : NSString? //from api call
     
     @IBOutlet var cameraImage: UIImageView!
     @IBOutlet var imgDescription: UILabel!
@@ -26,13 +26,14 @@ class View2: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //waiting for img desc
         imgDescription.text = "[waiting]"
+        
+        //TODO: Make sure the image doesn't get too stretched. Play around with scale
         if(imageData != nil){
             cameraImage.image = UIImage(data: imageData!, scale: 1.0)
         }
-        makeRequestToCloudSight()
         
+        makeRequestToCloudSight()
         
     }
 
@@ -45,119 +46,75 @@ class View2: UIViewController {
     func makeRequestToCloudSight(){
         
         postToGetToken(getToGetDescription)
-//        getToGetDescription()
-        
         
     }
     
     //------------------POST REQUEST AND GET TOKEN--------------------------//
     
-    func postToGetToken(callback: (Void) -> Void){
-        var url = "https://camfind.p.mashape.com/image_requests/"
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        var session = NSURLSession.sharedSession()
-        request.HTTPMethod = "POST"
-    
-        //method must take data object. make params here
-        let str1 = "image_request[image]="
-        let str2 = "image_request[locale]=en_US"
-        var params = NSMutableData()
-        params.appendData(str1.dataUsingEncoding(NSUTF8StringEncoding)!)
-        params.appendData(imageData!)
-        params.appendData(str2.dataUsingEncoding(NSUTF8StringEncoding)!)
+    func postToGetToken(callback: (String) -> Void){
+        let url = "https://camfind.p.mashape.com/image_requests"
         
-        var err: NSError?
-        request.HTTPBody = params
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("c5eVWXdxDrmshSeRT8T8gNADl9sxp1emHCSjsnHNNryWRMUztq",
-            forHTTPHeaderField: "X-Mashape-Key")
+        //TODO: instead of taking an image url, send post request using image as jpg or png
+        let params = [
+            "image_request[remote_image_url]": "http://www.thinkwoof.com/dog-breed-images/golden-retriever.jpg",
+            "image_request[locale]": "en_US"
+        ]
+        let headers = [
+            "X-Mashape-Key": "c5eVWXdxDrmshSeRT8T8gNADl9sxp1emHCSjsnHNNryWRMUztq",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Accept": "application/json"
+        ]
         
-        //response
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+        Alamofire.request(.POST, url, headers: headers, parameters: params).responseJSON {
+            (response) -> Void in
             
-            var strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            var err: NSError?
-            var json : NSDictionary?
-            do{
-                json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves) as? NSDictionary
-            }
-            catch _ {}
+            //response.result.value is the JSON response
             
-            
-            // error
-            if(err != nil) {
-//                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("Error with json")
-            }
-            else {
+            //TODO: clean up if statements
+            if let JSON = response.result.value{
+                debugPrint(JSON)
                 
-                //get the token
-                if let parseJSON = json {
-                    let success = parseJSON["token"] as? NSString
-                    self.imgToken = success!
-                    print("ye%@", self.imgToken)
-                    
-                    //this is the get req
-                    callback()
+                if let token = JSON["token"] {
+                    callback(token as! String)
+                } else{
+                    self.imgDescription.text = "Error: Post request didn't return token"
                 }
                 
+            } else {
+                print("Error: Couldn't get token")
             }
-        })
-        
-        task.resume()
+            
+        }
+
     }
     
     //-----------------------------GET REQUEST TO FIND DESCRIPTION------------------------//
 
-    func getToGetDescription(){
-        print(imgToken)
-        let url = "https://camfind.p.mashape.com/image_responses/" + (imgToken! as String)
-//        let url = "https://camfind.p.mashape.com/image_responses/" + String(data: imgToken!, encoding: NSUTF8StringEncoding)
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        var session = NSURLSession.sharedSession()
-        request.HTTPMethod = "GET"
-      
-        //no params this time
+    func getToGetDescription(token: String) {
+        let url = "https://camfind.p.mashape.com/image_responses/" + token
         
-        var err: NSError?
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("c5eVWXdxDrmshSeRT8T8gNADl9sxp1emHCSjsnHNNryWRMUztq",
-            forHTTPHeaderField: "X-Mashape-Key")
+        let headers = [
+            "X-Mashape-Key": "c5eVWXdxDrmshSeRT8T8gNADl9sxp1emHCSjsnHNNryWRMUztq",
+            "Accept": "application/json"
+        ]
         
-        //response
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+        Alamofire.request(.GET, url, headers: headers).responseJSON {
+            (response) -> Void in
             
-            var strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            //var err: NSError?
-            var json: NSDictionary!
-            do{
-                json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves)
-                as! NSDictionary
-            }catch{}
-            
-            // error
-            if(err != nil) {
-                let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                print("Error with json")
-            }
-            else {
+            //TODO: clean up if statements
+            if let JSON = response.result.value{
                 
-                //get the token
-                
-                if let parseJSON = json {
-                    var success = parseJSON["name"] as? String
-                    
-                    //YYEEESS. this is where we set the img description label
-                    self.imgDescription.text = success
+                if let description = JSON["name"]{
+                    self.imgDescription.text = description as! String
+                } else {
+                    self.imgDescription.text = "Error getting image description"
                 }
-                
+
+            } else {
+                self.imgDescription.text = "Error getting image description"
             }
-        })
-        
-        task.resume()
-        
+            
+        }
     }
     
 }

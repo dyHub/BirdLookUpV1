@@ -1,0 +1,6 @@
+framework module Pods_BirdLookupPart0 {
+  umbrella header "Pods-BirdLookupPart0-umbrella.h"
+
+  export *
+  module * { export * }
+}
