@@ -20,8 +20,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     //this is the jpeg to send to the next view controller
     var imageData : NSData?
     
-        
+    // IB Attributes
     @IBOutlet var cameraView: UIView!
+    @IBOutlet var tempImageView: UIImageView!
+    @IBOutlet var sendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +48,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewWillAppear(animated)
         
         navigationItem.title = "Camera"
-        sendButton.hidden = true
+        //self.sendButton.hidden = true
         
         captureSession = AVCaptureSession()
         captureSession?.sessionPreset = AVCaptureSessionPreset1920x1080
+        print("Why sendButton.hidden doesn't work?")
         
         let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
@@ -92,8 +95,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
     }
     
-    @IBOutlet var tempImageView: UIImageView!
-    @IBOutlet var sendButton: UIButton!
+    
     
     func didPressTakePhoto(){
         

@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lpV-KI-a2n">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YaO-Qv-4b2">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YaO-Qv-4b2">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="700"/>
                                         <animations/>
                                     </imageView>
@@ -108,12 +108,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSm-fA-pyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506.5" y="242.5"/>
+            <point key="canvasLocation" x="1460.5" y="242.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View-->
         <scene sceneID="Nk7-Bu-cG9">
             <objects>
-                <viewController id="tSw-U8-UdK" sceneMemberID="viewController">
+                <viewController id="tSw-U8-UdK" customClass="HomeView" customModule="BirdLookupPart0" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3GV-BR-Uhm"/>
                         <viewControllerLayoutGuide type="bottom" id="TvM-jF-hrW"/>
@@ -123,11 +123,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomeImage" translatesAutoresizingMaskIntoConstraints="NO" id="y6z-iX-3Tt">
-                                <rect key="frame" x="-42" y="54" width="531" height="501"/>
+                                <rect key="frame" x="-45" y="54" width="531" height="501"/>
                                 <animations/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="U0U-Qn-8fk" appends="YES" id="c1m-q0-R4Z"/>
+                                    <outletCollection property="gestureRecognizers" destination="1dU-Ql-LXS" appends="YES" id="WQA-J2-jLI"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRv-O5-4eb">
@@ -142,15 +142,47 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="HomeImage" destination="y6z-iX-3Tt" id="4Bg-fd-OpI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GPD-iQ-UtA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="U0U-Qn-8fk">
+                <tapGestureRecognizer id="1dU-Ql-LXS">
                     <connections>
-                        <segue destination="1SF-2W-QUI" kind="show" id="IwP-JF-Wx9"/>
+                        <action selector="selectSearchChoice:" destination="tSw-U8-UdK" id="8Rl-yt-xa7"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-27.5" y="80.5"/>
+            <point key="canvasLocation" x="-39.5" y="138.5"/>
+        </scene>
+        <!--Test View-->
+        <scene sceneID="78J-JQ-0kh">
+            <objects>
+                <viewController id="um1-a4-mzr" customClass="TestView" customModule="BirdLookupPart0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FAn-Vp-ykB"/>
+                        <viewControllerLayoutGuide type="bottom" id="ECg-x5-Ko0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ySy-Z5-aBl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TestImage" translatesAutoresizingMaskIntoConstraints="NO" id="sb4-NW-6c5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="TestImage" destination="sb4-NW-6c5" id="sVA-od-KZA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4DC-ye-TkS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="228.5" y="-600.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q9y-co-4SM">
@@ -176,5 +208,6 @@
     </scenes>
     <resources>
         <image name="HomeImage" width="480" height="360"/>
+        <image name="TestImage" width="360" height="640"/>
     </resources>
 </document>
