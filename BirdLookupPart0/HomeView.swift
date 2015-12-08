@@ -25,7 +25,7 @@ class HomeView: UIViewController {
             (alert: UIAlertAction!) -> Void in
             print("Camera")
             let CameraVC = ViewController()
-            var navigationController = UINavigationController(rootViewController: CameraVC)
+            let navigationController = UINavigationController(rootViewController: CameraVC)
             self.presentViewController(navigationController , animated: true, completion: nil)
         })
         
@@ -43,8 +43,9 @@ class HomeView: UIViewController {
         
         let TestImageAction = UIAlertAction(title: "Test Image", style: .Default, handler: {
             (alert:UIAlertAction!) -> Void in
-            let TestVC = TestView()
-            var navigationController = UINavigationController(rootViewController: TestVC)
+            
+            let TestVC = self.storyboard?.instantiateViewControllerWithIdentifier("testView") as! TestView
+            let navigationController = UINavigationController(rootViewController: TestVC)
             self.presentViewController(navigationController , animated: true, completion: nil)
             
         })
