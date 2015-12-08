@@ -13,4 +13,10 @@ class TestView: UIViewController {
     
     @IBOutlet weak var TestImage: UIImageView!
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        TestImage.hidden = false
+    }
+    
 }
