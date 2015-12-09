@@ -10,9 +10,22 @@ import UIKit
 
 class HomeView: UIViewController {
 
+
     // MARK: Properties
     
     @IBOutlet weak var HomeImage: UIImageView!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     // MARK: Action
     
@@ -24,9 +37,9 @@ class HomeView: UIViewController {
         let CameraAction = UIAlertAction(title: "Camera", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Camera")
-            let CameraVC = ViewController()
+            let CameraVC = self.storyboard?.instantiateViewControllerWithIdentifier("viewController") as!ViewController
             let navigationController = UINavigationController(rootViewController: CameraVC)
-            self.presentViewController(navigationController , animated: true, completion: nil)
+            self.presentViewController(navigationController, animated: true, completion: nil)
         })
         
         // Choice of choosing existent photo
@@ -43,10 +56,11 @@ class HomeView: UIViewController {
         
         let TestImageAction = UIAlertAction(title: "Test Image", style: .Default, handler: {
             (alert:UIAlertAction!) -> Void in
-            
-            let TestVC = self.storyboard?.instantiateViewControllerWithIdentifier("testView") as! TestView
+            // connect TestVC from code to storyboard
+            let TestVC = self.storyboard?.instantiateViewControllerWithIdentifier("testView") as!TestView
             let navigationController = UINavigationController(rootViewController: TestVC)
-            self.presentViewController(navigationController , animated: true, completion: nil)
+            //navigationController.navigationItem.backBarButtonItem=UIBarButtonItem()
+            self.presentViewController(navigationController, animated: true, completion: nil)
             
         })
         

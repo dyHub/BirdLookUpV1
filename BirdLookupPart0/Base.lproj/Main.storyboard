@@ -49,9 +49,16 @@
                             <constraint firstItem="lpV-KI-a2n" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="oD9-L1-bzi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="I7a-y1-DzW"/>
+                    <navigationItem key="navigationItem" id="I7a-y1-DzW">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="RgC-bO-kGq">
+                            <connections>
+                                <action selector="backHome:" destination="vXZ-lx-hvc" id="kq2-4Z-Ter"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="backButton" destination="RgC-bO-kGq" id="zK8-ur-zLx"/>
                         <outlet property="cameraView" destination="lpV-KI-a2n" id="o7T-Qe-jf8"/>
                         <outlet property="sendButton" destination="KcN-9Q-aPY" id="7fq-bR-tyU"/>
                         <outlet property="tempImageView" destination="YaO-Qv-4b2" id="mF4-N7-Pne"/>
@@ -165,7 +172,7 @@
             </objects>
             <point key="canvasLocation" x="-39.5" y="138.5"/>
         </scene>
-        <!--Test View-->
+        <!--Test Image-->
         <scene sceneID="78J-JQ-0kh">
             <objects>
                 <viewController storyboardIdentifier="testView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="um1-a4-mzr" customClass="TestView" customModule="BirdLookupPart0" customModuleProvider="target" sceneMemberID="viewController">
@@ -185,14 +192,22 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Test Image" id="DOk-gd-Y1H">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="cdi-Ji-lSh">
+                            <connections>
+                                <action selector="backHome:" destination="um1-a4-mzr" id="DiM-bx-1xb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="HomeButton" destination="cdi-Ji-lSh" id="hiv-gA-OgZ"/>
                         <outlet property="TestImage" destination="sb4-NW-6c5" id="sVA-od-KZA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4DC-ye-TkS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1396" y="-590"/>
+            <point key="canvasLocation" x="1830" y="-579"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="q9y-co-4SM">
@@ -214,6 +229,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cnq-Y1-KbL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="402.5" y="242.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aEz-x4-1Mz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YWs-bE-kr3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QI2-h8-304">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="um1-a4-mzr" kind="relationship" relationship="rootViewController" id="p2S-0x-LOh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K9u-58-YFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1396" y="-590"/>
         </scene>
     </scenes>
     <resources>

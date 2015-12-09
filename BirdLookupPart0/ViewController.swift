@@ -24,6 +24,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBOutlet var cameraView: UIView!
     @IBOutlet var tempImageView: UIImageView!
     @IBOutlet var sendButton: UIButton!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +49,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewWillAppear(animated)
         
         navigationItem.title = "Camera"
-        //self.sendButton.hidden = true
+        self.sendButton.hidden = true
         
         captureSession = AVCaptureSession()
         captureSession?.sessionPreset = AVCaptureSessionPreset1920x1080
-        print("Why sendButton.hidden doesn't work?")
         
         let backCamera = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         
@@ -117,6 +117,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
                     var image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
                     
                     //must use self. because we are in closure
+                    //self.cameraView.hidden = true
                     self.tempImageView.image = image
                     self.tempImageView.hidden = false
                     self.sendButton.hidden = false
@@ -155,6 +156,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         
     }
     
+    // IB Action
+    // home button present home view
+    @IBAction func backHome(sender: UIBarButtonItem) {
+        let homeVC = self.storyboard?.instantiateViewControllerWithIdentifier("homeView") as!HomeView
+        self.presentViewController(homeVC, animated: true, completion: nil)
+    }
     
 }
 
