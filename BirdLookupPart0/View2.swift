@@ -16,7 +16,7 @@ class View2: UIViewController {
     
     @IBOutlet var cameraImage: UIImageView!
     @IBOutlet var imgDescription: UILabel!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

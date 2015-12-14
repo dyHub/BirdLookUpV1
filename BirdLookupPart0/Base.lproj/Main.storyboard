@@ -71,7 +71,7 @@
         <!--View2-->
         <scene sceneID="2P4-ve-BwX">
             <objects>
-                <viewController id="I0A-0T-YHx" customClass="View2" customModule="BirdLookupPart0" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="view2" id="I0A-0T-YHx" customClass="View2" customModule="BirdLookupPart0" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QGh-gh-3Jt"/>
                         <viewControllerLayoutGuide type="bottom" id="R77-kq-arN"/>
@@ -80,27 +80,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Some Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGA-GQ-mCa">
-                                <rect key="frame" x="5" y="368" width="310" height="200"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Your image is a..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UU5-xH-dwK">
-                                <rect key="frame" x="5" y="353" width="310" height="21"/>
+                                <rect key="frame" x="5" y="378" width="310" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="285" placeholderIntrinsicHeight="226" translatesAutoresizingMaskIntoConstraints="NO" id="gbL-KO-Eq5">
-                                <rect key="frame" x="26" y="72" width="269" height="258"/>
+                                <rect key="frame" x="46" y="72" width="228" height="288"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="258" id="yWA-eb-Aaa"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Some Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGA-GQ-mCa">
+                                <rect key="frame" x="5" y="420" width="310" height="91"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.71334887069999997" green="0.95419970249999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>

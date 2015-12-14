@@ -8,13 +8,14 @@
 
 import UIKit
 
-class HomeView: UIViewController {
+class HomeView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 
     // MARK: Properties
     
     @IBOutlet weak var HomeImage: UIImageView!
-    
+    var imageData : NSData?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,32 @@ class HomeView: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        // Dismiss the picker if user canceled. This code animates the dismissal of the image picker controller.
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // called when a user selects a photo
+    func imagePickerController(picker: UIImagePickerController,  didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        // The info dictionary contains multiple representations of the image, and this uses the original.
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        // Dismiss the picker.
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        // connect the code with the view2 story board
+        var View2VC = self.storyboard?.instantiateViewControllerWithIdentifier("view2") as!View2
+        
+        // Set view 2 image View to display the selected image.
+        View2VC.cameraImage.image = selectedImage
+
+        let navigationController = UINavigationController(rootViewController: View2VC)
+        
+        // show view2 view controller
+        presentViewController(navigationController, animated: true, completion: nil)
+        
     }
     
     // MARK: Action
@@ -39,14 +66,30 @@ class HomeView: UIViewController {
             print("Camera")
             let CameraVC = self.storyboard?.instantiateViewControllerWithIdentifier("viewController") as!ViewController
             let navigationController = UINavigationController(rootViewController: CameraVC)
+            // show camera view controller
             self.presentViewController(navigationController, animated: true, completion: nil)
         })
+        
+        
         
         // Choice of choosing existent photo
         let PhotoLibraryAction = UIAlertAction(title: "Photo Library", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Photo Library")
+            // UIImagePickerController is a view controller that lets a user pick media from their photo library
+            let imagePickerController = UIImagePickerController()
+            
+            // Only allow photos to be picked, not taken
+            imagePickerController.sourceType = .PhotoLibrary
+            
+            // Mke sure ViewController is notified when the user picks an image
+            imagePickerController.delegate = self
+            
+            // show photo library
+            self.presentViewController(imagePickerController, animated: true, completion: nil)
+            
         })
+        
         
         // Choice of selecting attributes
         let AttributesAction = UIAlertAction(title: "Attributes", style: .Default, handler: {
@@ -54,6 +97,8 @@ class HomeView: UIViewController {
             print("Attributes")
         })
         
+        
+        // A test image choice for debugging means
         let TestImageAction = UIAlertAction(title: "Test Image", style: .Default, handler: {
             (alert:UIAlertAction!) -> Void in
             // connect TestVC from code to storyboard
@@ -64,13 +109,14 @@ class HomeView: UIViewController {
             
         })
         
+        
         // Cancel selections
         let CancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         
-        
+    
         // Adding actions to choice lists
         optionMenu.addAction(CameraAction)
         optionMenu.addAction(PhotoLibraryAction)
