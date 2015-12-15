@@ -42,16 +42,15 @@ class HomeView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         dismissViewControllerAnimated(true, completion: nil)
         
         // connect the code with the view2 story board
-        var View2VC = self.storyboard?.instantiateViewControllerWithIdentifier("view2") as!View2
+        let View2VC = self.storyboard?.instantiateViewControllerWithIdentifier("view2") as!View2
         
-        // Set view 2 image View to display the selected image.
-        View2VC.cameraImage.image = selectedImage
+        // Set the imageData field, which is View2's UIImageView image
+        View2VC.imageData = UIImageJPEGRepresentation(selectedImage, 1.0)
 
         let navigationController = UINavigationController(rootViewController: View2VC)
         
         // show view2 view controller
         presentViewController(navigationController, animated: true, completion: nil)
-        
     }
     
     // MARK: Action

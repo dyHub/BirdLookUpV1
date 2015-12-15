@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 
+//TODO: put back button from nav bar
 class View2: UIViewController {
     
     //passed from main VC
@@ -30,7 +31,7 @@ class View2: UIViewController {
         
         //TODO: Make sure the image doesn't get too stretched. Play around with scale
         if(imageData != nil){
-            cameraImage.image = UIImage(data: imageData!, scale: 1.0)
+            cameraImage?.image = UIImage(data: imageData!, scale: 1.0)
         }
         
         makeRequestToCloudSight()
@@ -78,12 +79,12 @@ class View2: UIViewController {
                     callback(token as! String)
                 }
                 else{
-                    self.imgDescription.text = "Error: Post request didn't return token"
+                    self.imgDescription?.text = "Error: Post request didn't return token"
                 }
                 
             }
             else {
-                print("Error: Couldn't get token")
+                print("Error: Bad request")
             }
             
         }
@@ -92,6 +93,9 @@ class View2: UIViewController {
     
     //-----------------------------GET REQUEST TO FIND DESCRIPTION------------------------//
 
+    //TODO: wait for response of status to not be "not completed"
+    //TODO: have different if statement checks for different statuses
+    //TODO: keep track of how many API calls are left
     func getToGetDescription(token: String) {
         let url = "https://camfind.p.mashape.com/image_responses/" + token
         
@@ -107,7 +111,12 @@ class View2: UIViewController {
             if let JSON = response.result.value{
                 
                 if let description = JSON["name"]{
-                    self.imgDescription.text = description as! String
+                    if(description != nil){
+                        self.imgDescription.text = description as! String
+                    }
+                    else{
+                        self.imgDescription.text = "Error getting image description"
+                    }
                 } else {
                     self.imgDescription.text = "Error getting image description"
                 }
