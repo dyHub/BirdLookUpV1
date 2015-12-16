@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Attribute View-->
+        <!--Attributes-->
         <scene sceneID="At9-JZ-Ho8">
             <objects>
                 <viewController storyboardIdentifier="attributeView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="w8i-2f-EDi" customClass="AttributeView" customModule="BirdLookupPart0" customModuleProvider="target" sceneMemberID="viewController">
@@ -38,19 +38,19 @@
                                 <rect key="frame" x="20" y="131" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZJW-jY-Gth">
                                 <rect key="frame" x="20" y="198" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NiA-Ib-M8a">
                                 <rect key="frame" x="20" y="332" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wing Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSe-0o-Ydb">
                                 <rect key="frame" x="20" y="303" width="94" height="21"/>
@@ -66,7 +66,7 @@
                                 <rect key="frame" x="23" y="236" width="107" height="21"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="76" id="h6f-bM-0zP"/>
+                                    <constraint firstAttribute="width" constant="107" id="h6f-bM-0zP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -76,7 +76,7 @@
                                 <rect key="frame" x="20" y="265" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Eye Stripe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iS-cM-ogu">
                                 <rect key="frame" x="20" y="377" width="89" height="21"/>
@@ -89,7 +89,7 @@
                                 <rect key="frame" x="20" y="406" width="280" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsI-ze-ZA2">
                                 <rect key="frame" x="105" y="477" width="110" height="43"/>
@@ -100,6 +100,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="SearchAction:" destination="w8i-2f-EDi" eventType="touchUpInside" id="B04-IM-sih"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -127,7 +130,7 @@
                             <constraint firstItem="ZsI-ze-ZA2" firstAttribute="centerX" secondItem="JhV-k2-2xR" secondAttribute="centerX" id="cNf-Ez-xON"/>
                             <constraint firstItem="NiA-Ib-M8a" firstAttribute="top" secondItem="wSe-0o-Ydb" secondAttribute="bottom" constant="8" symbolic="YES" id="fqs-TF-45j"/>
                             <constraint firstItem="ZsI-ze-ZA2" firstAttribute="centerX" secondItem="G7Y-At-3on" secondAttribute="centerX" id="hKu-CN-HxE"/>
-                            <constraint firstItem="J4c-sB-NZJ" firstAttribute="leading" secondItem="G7Y-At-3on" secondAttribute="leadingMargin" constant="7" id="hck-zU-4uf"/>
+                            <constraint firstItem="J4c-sB-NZJ" firstAttribute="leading" secondItem="G7Y-At-3on" secondAttribute="leadingMargin" constant="3" id="hck-zU-4uf"/>
                             <constraint firstItem="EG2-i3-hfC" firstAttribute="top" secondItem="J4c-sB-NZJ" secondAttribute="bottom" constant="8" symbolic="YES" id="jlk-Se-YXo"/>
                             <constraint firstItem="JhV-k2-2xR" firstAttribute="top" secondItem="c3o-ID-K5M" secondAttribute="bottom" constant="8" symbolic="YES" id="yKu-aH-DY4"/>
                             <constraint firstItem="c3o-ID-K5M" firstAttribute="leading" secondItem="NiA-Ib-M8a" secondAttribute="leading" id="z1i-Da-I0M"/>
@@ -135,26 +138,78 @@
                             <constraint firstItem="c3o-ID-K5M" firstAttribute="leading" secondItem="wSe-0o-Ydb" secondAttribute="leading" id="zTH-gM-aSm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VUF-aN-8Sv">
+                    <navigationItem key="navigationItem" title="Attributes" id="VUF-aN-8Sv">
                         <barButtonItem key="leftBarButtonItem" title="Home" id="k1j-RJ-WWR">
                             <connections>
-                                <action selector="backHome:" destination="w8i-2f-EDi" id="GSE-GL-2zj"/>
+                                <action selector="backHome:" destination="w8i-2f-EDi" id="YDS-M8-9N9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="HomeButton" destination="k1j-RJ-WWR" id="fNL-XF-cMf"/>
+                        <outlet property="BreastText" destination="EG2-i3-hfC" id="yCR-0Q-FPX"/>
+                        <outlet property="EyeText" destination="DrM-hX-F6m" id="H3E-x6-aHo"/>
+                        <outlet property="HeadText" destination="ZJW-jY-Gth" id="ubI-CK-v5U"/>
+                        <outlet property="HomeButton" destination="k1j-RJ-WWR" id="iLU-qT-4ds"/>
+                        <outlet property="SearchButton" destination="ZsI-ze-ZA2" id="e6x-3G-EZ2"/>
+                        <outlet property="SizeText" destination="JhV-k2-2xR" id="Kui-Q8-CqB"/>
+                        <outlet property="WingText" destination="NiA-Ib-M8a" id="gPN-mL-Tz3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yn6-kT-rt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="258"/>
+            <point key="canvasLocation" x="1423" y="258"/>
+        </scene>
+        <!--Search View-->
+        <scene sceneID="c5U-Wt-8MD">
+            <objects>
+                <viewController storyboardIdentifier="searchView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KHh-af-WpS" customClass="SearchView" customModule="BirdLookupPart0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dHU-uW-uaT"/>
+                        <viewControllerLayoutGuide type="bottom" id="9rl-yc-auc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Ig-Cd-VOx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ConstructionImage" translatesAutoresizingMaskIntoConstraints="NO" id="IKq-cQ-lHa">
+                                <rect key="frame" x="20" y="116" width="269" height="336"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <accessibilityTraits key="traits" none="YES"/>
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
+                        <constraints>
+                            <constraint firstItem="IKq-cQ-lHa" firstAttribute="centerY" secondItem="7Ig-Cd-VOx" secondAttribute="centerY" id="VXa-ZA-mzs"/>
+                            <constraint firstItem="IKq-cQ-lHa" firstAttribute="leading" secondItem="7Ig-Cd-VOx" secondAttribute="leadingMargin" id="bRl-gh-Vla"/>
+                            <constraint firstItem="IKq-cQ-lHa" firstAttribute="centerX" secondItem="7Ig-Cd-VOx" secondAttribute="centerX" constant="-5.5" id="cRH-fo-FCB"/>
+                            <constraint firstItem="IKq-cQ-lHa" firstAttribute="top" secondItem="dHU-uW-uaT" secondAttribute="bottom" constant="52" id="cdx-mL-QDD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="OrR-oQ-Qup">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="KD2-3i-Rc9">
+                            <connections>
+                                <action selector="back:" destination="KHh-af-WpS" id="Cva-eW-57i"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="BackButton" destination="OrR-oQ-Qup" id="pci-L3-kpq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="daX-wa-kna" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2482" y="250"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aqt-qc-UxH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0IU-4o-rsL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AttributeNavigate" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0IU-4o-rsL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7pL-bL-OMX">
@@ -171,5 +226,28 @@
             </objects>
             <point key="canvasLocation" x="1017" y="258"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tq7-gM-WW4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qaf-sX-qtR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EpH-y1-3R0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KHh-af-WpS" kind="relationship" relationship="rootViewController" id="ccW-mQ-ITs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nUb-of-epq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2067" y="250"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="ConstructionImage" width="309" height="369"/>
+    </resources>
 </document>

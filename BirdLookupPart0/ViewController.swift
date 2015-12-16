@@ -150,11 +150,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         didPressTakeAnother()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let DestViewController : View2 = segue.destinationViewController as! View2
-        DestViewController.imageData = self.imageData
-        
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        let DestViewController : View2 = segue.destinationViewController as! View2
+//        DestViewController.imageData = self.imageData
+//        
+//    }
     
     // IB Action
     // home button present home view
@@ -162,6 +162,21 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         let homeVC = self.storyboard?.instantiateViewControllerWithIdentifier("homeView") as!HomeView
         self.presentViewController(homeVC, animated: true, completion: nil)
     }
+    
+    
+    @IBAction func SendPhoto(sender: UIButton) {
+        // connect the code with the view2 story board
+        let View2VC = self.storyboard?.instantiateViewControllerWithIdentifier("view2") as!View2
+        
+        // Set the imageData field, which is View2's UIImageView image
+        View2VC.imageData = self.imageData
+        
+        let navigationController = UINavigationController(rootViewController: View2VC)
+        
+        // show view2 view controller
+        presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
     
 }
 

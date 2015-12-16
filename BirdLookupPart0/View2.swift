@@ -17,7 +17,8 @@ class View2: UIViewController {
     
     @IBOutlet var cameraImage: UIImageView!
     @IBOutlet var imgDescription: UILabel!
-        
+    @IBOutlet weak var HomeButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -127,5 +128,14 @@ class View2: UIViewController {
             
         }
     }
+    
+    // MARK: Action
+    // Home button action
+    @IBAction func backHome(sender: UIBarButtonItem) {
+        // connect to home view
+        let HomeVC = self.storyboard?.instantiateViewControllerWithIdentifier("homeView") as!HomeView
+        self.presentViewController(HomeVC, animated: true, completion: nil)
+    }
+    
     
 }

@@ -12,14 +12,13 @@ class HomeView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
 
 
     // MARK: Properties
-    
     @IBOutlet weak var HomeImage: UIImageView!
     var imageData : NSData?
-
     
+
+    // ---------- default override function ---------//
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     
@@ -28,6 +27,8 @@ class HomeView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // ---------------- functions for image picker ----------------- //
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         // Dismiss the picker if user canceled. This code animates the dismissal of the image picker controller.
         dismissViewControllerAnimated(true, completion: nil)
@@ -53,8 +54,9 @@ class HomeView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         presentViewController(navigationController, animated: true, completion: nil)
     }
     
-    // MARK: Action
     
+    // MARK: Action
+    // ----------------- selection functions ------------------------ //
     @IBAction func selectSearchChoice(sender: UITapGestureRecognizer) {
         // Show Action Sheet
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .ActionSheet)
@@ -94,6 +96,15 @@ class HomeView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let AttributesAction = UIAlertAction(title: "Attributes", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Attributes")
+            // connect attribute storyboard to Home view
+            let AttributeStoryboard = UIStoryboard(name: "Attribute", bundle: nil)
+            // connect attribute view from code to attribute storyboard
+            let AttributeVC = AttributeStoryboard.instantiateViewControllerWithIdentifier("attributeView") as!AttributeView
+            let navigationController = UINavigationController(rootViewController: AttributeVC)
+            // show attribute option
+            self.presentViewController(navigationController, animated: true, completion: nil)
+
+            
         })
         
         
@@ -112,7 +123,7 @@ class HomeView: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         // Cancel selections
         let CancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
+            //self.dismissViewControllerAnimated(true, completion: nil)
         })
         
     
