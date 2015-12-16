@@ -1,7 +1,6 @@
-# Image-Recognizer-iPhone-
+# Bird Recognizer via Image Recognition
 
-This is an iPhone app in which you can take a picture of anything, and using the CamFind APi, it will return the string of what the
-object is! This is meant to be as a starting point for a Bird Recognizer app, in which we use the description returned from CamFind to do 
-a Google Image API search.
+This is an iPhone app in which you can take a picture of anything, and using the CamFind API, it will return the string of what the
+object is! This is meant to be as a starting point for our Bird Recognizer app, in which we will use the description returned from CamFind and use the Google Search API in order to find the name of the bird you took a picture of.
 
 Enjoy!
